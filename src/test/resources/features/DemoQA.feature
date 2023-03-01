@@ -4,7 +4,7 @@ Feature: Elements page functionality
   Scenario: Check different button actions
     Given Navigate to "Buttons" page
     When  Double click on button
-    Then  Verify text double click message "You have done a double click" should be visible
+    Then  Verify text double click message "You have done a double clicks" should be visible
     And   Right click on button
     Then  Verify text right click message "You have done a right click" should be visible
     And   Click Me button
