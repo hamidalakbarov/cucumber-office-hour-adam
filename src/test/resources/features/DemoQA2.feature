@@ -1,6 +1,6 @@
 Feature: Elements page functionality
 
-  @buttons
+  @smoke
   Scenario: Check different button actions
     Given Navigate to "Buttons" page
     When  Double click on button

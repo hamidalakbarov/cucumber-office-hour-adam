@@ -1,0 +1,39 @@
+
+
+-- How to trigger parallel execution from Intellij TERMINAL ?
+
+    - WIN --> CTRL+ENTER
+    - MAC --> CMD + ENTER
+
+   It will use built-in maven from Intellij to execute testcases
+
+   mvn test
+
+-- How to trigger parallel execution from Intellij RUN ANYTHING ?
+
+    Click Maven--> Execute maven Goal
+
+    mvn test
+
+
+-- How to override tag that we have into CukesRunner ?
+
+     -Dcucumber.filter.tags=@tag
+
+     will override existing tag from CukesRunner when we run with mvn
+
+-- How to create Edit Configuration ?
+
+    Edit Configuration --> Click + Sign --> Select Maven
+
+    Command will for SmokeRunner --> test -Dcucumber.filter.tags=@smoke
+
+
+-- How to run FailedTest from Maven ?
+
+    -Dcucumber.features will override feature that we have into CukesRunner
+
+    - We are gonna copy path from rerun.txt by using comma between failed test to execute in maven
+
+    mvn test -Dcucumber.features= path,path,path,.........
+
