@@ -3,10 +3,14 @@ package com.cydeo.step_definitions;
 import com.cydeo.pages.librarian.Librarian_HomePage;
 import com.cydeo.pages.librarian.Librarian_LoginPage;
 import com.cydeo.pages.librarian.Librarian_UsersPage;
+import com.cydeo.utilities.BrowserUtils;
 import com.cydeo.utilities.ConfigurationReader;
 import com.cydeo.utilities.Driver;
 import io.cucumber.java.en.*;
 import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.ElementClickInterceptedException;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -53,9 +57,14 @@ public class AddUser_StepDefs {
     @Then("verify {string} message is displayed")
     public void verify_message_is_displayed(String message) {
         Assert.assertEquals(message, librarian_usersPage.message.getText());
-        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.invisibilityOf(librarian_usersPage.message));
-        librarian_usersPage.dropdown.click();
+        boolean notVisible = true;
+        while (notVisible) {
+            try {
+                librarian_usersPage.dropdown.click();
+                notVisible = false;
+            } catch (ElementClickInterceptedException e) {
+            }
+        }
         librarian_usersPage.logOutButton.click();
     }
     @Then("verify created user with {string} and {string} able to login")
@@ -64,14 +73,8 @@ public class AddUser_StepDefs {
     }
     @Then("verify created user should be able to see {string}")
     public void verify_created_user_should_be_able_to_see(String name) {
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOf(librarianHomePage.dropdown));
         Assert.assertEquals(name,librarianHomePage.dropdown.getText());
     }
-    @Then("created user should be deleted from library")
-    public void created_user_should_be_deleted_from_library() {
-
-    }
-
-
-
-
 }

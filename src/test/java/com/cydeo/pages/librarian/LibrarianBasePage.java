@@ -17,7 +17,7 @@ public abstract class LibrarianBasePage{
         linkToPage.click();
     }
 
-    @FindBy(xpath = "//a[@data-toggle='dropdown']")
+    @FindBy(xpath = "//a[@data-toggle='dropdown']//span")
     public WebElement dropdown;
 
 
